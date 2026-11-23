@@ -1,0 +1,7 @@
+{
+  "name": "local.ihc.controller",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": { "test": "node --test test/*.test.js" },
+  "dependencies": { "fast-xml-parser": "5.12.1" }
+}

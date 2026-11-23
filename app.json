@@ -1,0 +1,38 @@
+{
+  "id": "local.ihc.controller",
+  "version": "0.1.0",
+  "compatibility": ">=12.0.0",
+  "sdk": 3,
+  "brandColor": "#20465A",
+  "platforms": ["local"],
+  "name": { "en": "IHC Controller" },
+  "description": { "en": "Connect LK IHC and ELKO Living System resources directly to Homey.", "da": "Forbind LK IHC og ELKO Living System direkte til Homey." },
+  "author": { "name": "IHC for Homey" },
+  "category": ["appliances"],
+  "permissions": [],
+  "images": { "small": "/assets/images/small.png", "large": "/assets/images/large.png", "xlarge": "/assets/images/xlarge.png" },
+  "capabilities": { "ihc_number": { "type": "number", "title": { "en": "Value", "da": "Værdi" }, "getable": true, "setable": false, "insights": true, "uiComponent": "sensor" } },
+  "drivers": [{
+    "id": "resource", "name": { "en": "IHC resource", "da": "IHC-ressource" },
+    "class": "other", "capabilities": [], "connectivity": ["lan"],
+    "images": { "small": "/drivers/resource/assets/images/small.png", "large": "/drivers/resource/assets/images/large.png", "xlarge": "/drivers/resource/assets/images/xlarge.png" },
+    "pair": [
+      { "id": "configure" },
+      { "id": "list_devices", "template": "list_devices", "navigation": { "next": "add_devices" } },
+      { "id": "add_devices", "template": "add_devices" }
+    ]
+  }],
+  "flow": { "actions": [
+    { "id": "pulse", "title": { "en": "Pulse a resource", "da": "Pulsér en ressource" }, "titleFormatted": { "en": "Pulse resource [[resource]]", "da": "Pulsér ressource [[resource]]" }, "args": [
+      { "name": "device", "type": "device", "filter": "driver_id=resource" }, { "name": "resource", "type": "number", "title": { "en": "Resource ID" } }] },
+    { "id": "bool", "title": { "en": "Set a boolean resource", "da": "Sæt en boolesk ressource" }, "titleFormatted": { "en": "Set boolean [[resource]] to [[value]]", "da": "Sæt boolesk ressource [[resource]] til [[value]]" }, "args": [
+      { "name": "device", "type": "device", "filter": "driver_id=resource" }, { "name": "resource", "type": "number", "title": { "en": "Resource ID" } },
+      { "name": "value", "type": "dropdown", "values": [{ "id": "true", "label": { "en": "On", "da": "Til" } }, { "id": "false", "label": { "en": "Off", "da": "Fra" } }] }] },
+    { "id": "int", "title": { "en": "Set an integer resource", "da": "Sæt en heltalsressource" }, "titleFormatted": { "en": "Set integer [[resource]] to [[value]]", "da": "Sæt heltalsressource [[resource]] til [[value]]" }, "args": [
+      { "name": "device", "type": "device", "filter": "driver_id=resource" }, { "name": "resource", "type": "number", "title": { "en": "Resource ID" } },
+      { "name": "value", "type": "number", "title": { "en": "Value", "da": "Værdi" } }] },
+    { "id": "float", "title": { "en": "Set a decimal resource", "da": "Sæt en decimaltalsressource" }, "titleFormatted": { "en": "Set decimal [[resource]] to [[value]]", "da": "Sæt decimaltalsressource [[resource]] til [[value]]" }, "args": [
+      { "name": "device", "type": "device", "filter": "driver_id=resource" }, { "name": "resource", "type": "number", "title": { "en": "Resource ID" } },
+      { "name": "value", "type": "number", "title": { "en": "Value", "da": "Værdi" } }] }
+  ] }
+}
